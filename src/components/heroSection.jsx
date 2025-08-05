@@ -2,7 +2,9 @@ import React from 'react';
 import { QueryContext } from "../context/queryContext";
 const HeroSection = () => {
     const { Query , setQuery } = React.useContext(QueryContext); 
-     
+     const  handleChange = (e)=>{
+      setQuery(e.target.value)
+     }
   return (
    
     <div> 
@@ -20,7 +22,7 @@ const HeroSection = () => {
         <h3 className="mb-4 fw-bold">Find Your Perfect Trip</h3>
         <div className="search-container position-relative d-inline-block">
           <input 
-        //   value={query }
+       onChange={(e)=>{handleChange(e)}}
             type="text" 
             className="form-control search-input" 
             placeholder="Where are you going?"

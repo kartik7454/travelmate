@@ -4,7 +4,7 @@ import React, { useState } from "react";
  const QueryContext = createContext();
 
 const QueryProvider = ({ children }) => {
-    const [Query, setQuery] = useState('hi');
+    const [Query, setQuery] = useState('');
   
     return (
       <QueryContext.Provider value={{ Query, setQuery}}>

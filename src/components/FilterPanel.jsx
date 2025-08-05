@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
+import { FilterContext } from "../context/filterContext";
 const FilterPanel = () => {
- 
+  const { Filter , setFilter } = React.useContext(FilterContext); 
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [tripDuration, setTripDuration] = useState(7);
   const [minRating, setMinRating] = useState(4);
@@ -14,7 +15,8 @@ const FilterPanel = () => {
   };
 
   const handleDurationChange = (e) => {
-    setTripDuration(parseInt(e.target.value));
+    
+    setFilter(prev => ({ ...prev, duration: parseInt(e.target.value) }));
   };
 
   const handleRatingChange = (e) => {
@@ -25,6 +27,7 @@ const FilterPanel = () => {
     <div className="   bg-primary w-25 p-6 rounded-lg shadow-sm border border-gray-200 max-w-sm" style={{
        height:"400px"
       }}>
+        
       <h2 className="text-xl font-bold text-gray-800 mb-6">Filter Options</h2>
       
      
@@ -32,55 +35,21 @@ const FilterPanel = () => {
       {/* Price Range */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-3">Price Range</label>
-        <div className="relative h-2 bg-gray-200 rounded-lg">
-          {/* Track fill */}
-          <div 
-            className="absolute h-2 bg-gray-400 rounded-lg"
-            style={{
-              left: `${(priceRange[0] / 5000) * 100}%`,
-              right: `${100 - (priceRange[1] / 5000) * 100}%`
-            }}
-          ></div>
-          
-          {/* Min slider */}
-          <input
-            type="range"
-            min="0"
-            max="5000"
-            value={priceRange[0]}
-            onChange={(e) => handlePriceChange(e, 0)}
-            className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer slider-thumb"
-            style={{ zIndex: 3 }}
-          />
-          
-          {/* Max slider */}
-          <input
-            type="range"
-            min="0"
-            max="5000"
-            value={priceRange[1]}
-            onChange={(e) => handlePriceChange(e, 1)}
-            className="absolute w-full h-2 bg-transparent appearance-none cursor-pointer slider-thumb"
-            style={{ zIndex: 4 }}
-          />
-        </div>
-        <div className="flex justify-between text-sm text-gray-600 mt-2">
-          <span>${priceRange[0]}</span>
-          <span>${priceRange[1]}</span>
-        </div>
+        
+        
       </div>
 
       {/* Trip Duration */}
       <div className="mb-6">
         <div className="flex justify-between items-center mb-3">
           <label className="block text-sm font-medium text-gray-700">Trip Duration (Days)</label>
-          <span className="text-sm text-gray-600">{tripDuration}</span>
+          <span className="text-sm text-gray-600">{Filter.duration}</span>
         </div>
         <input
           type="range"
           min="1"
           max="30"
-          value={tripDuration}
+          value={Filter.duration}
           onChange={handleDurationChange}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
         />

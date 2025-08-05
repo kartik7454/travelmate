@@ -1,9 +1,26 @@
 import React from 'react';
 import './TripCard.css';
+import { SavedContext } from "../context/savedContext";
 
 const TripCard = ( props ) => {
+  const { Saved , setSaved } = React.useContext(SavedContext); 
+  const handelClick =()=>{
+   setSaved(prev => [
+     ...prev,
+     {
+       id: props.id,
+       title: props.title,
+       description: props.description,
+       image: props.image,
+       price: props.price,
+       duration: props.duration,
+       rating: props.rating
+     }
+   ]);
+  }
   return (
     <div className="trip-card ">
+     
       <div className="trip-card-content">
         <div className="trip-card-text">
           <div className="featured-label">Featured</div>
@@ -25,7 +42,7 @@ const TripCard = ( props ) => {
               
             </div>
           </div>
-          <button className="save-trip-btn">
+          <button className="save-trip-btn" onClick={()=>{handelClick()}}>
             <span>Save Trip</span>
             <svg className="bookmark-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
