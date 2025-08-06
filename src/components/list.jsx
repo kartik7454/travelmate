@@ -12,12 +12,19 @@ const List = () => {
   
     return (
       (item.title.toLowerCase().includes(Query.toLowerCase()) )&& 
-      (item.duration < Filter.duration) 
+      (item.duration <= Filter.duration) &&
+      (item.rating >= Filter.rating) &&
+      (item.price>=Filter.price[0] &&item.price<=Filter.price[1])
+      
     );
-  
-  
-  
  })
+
+ // Apply sorting by price
+ if (Filter.sort === "lth") {
+   filteredData.sort((a, b) => a.price - b.price);
+ } else if (Filter.sort === "htl") {
+   filteredData.sort((a, b) => b.price - a.price);
+ }
   return (
     <div>
       

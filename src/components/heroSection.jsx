@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { QueryContext } from "../context/queryContext";
 const HeroSection = () => {
     const { Query , setQuery } = React.useContext(QueryContext); 
-     const  handleChange = (e)=>{
+    const searchInputRef = useRef(null);
+    const handleChange = (e)=>{
       setQuery(e.target.value)
-     }
+    }
+    const handleStartPlanning = () => {
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+        searchInputRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
   return (
    
     <div> 
@@ -13,7 +20,7 @@ const HeroSection = () => {
      <div className=' w-75 rounded-3    mt-5 d-flex justify-content-center align-items-center  ' style={{height: '500px'}}>
         <h1 className='position-absolute text-light  '>Discover Your Next Adventure </h1>
         <p className='position-absolute text-light top-50    '> Explore curated travel packages to the world's most breathtaking destinations. Start planning your dream trip today.   </p>
-        <button type="button" class="btn btn-warning position-absolute " style={{top:'370px'}}>Start Planning</button>
+        <button type="button" className="btn btn-warning position-absolute " style={{top:'370px'}} onClick={handleStartPlanning}>Start Planning</button>
                    <img className='w-100 rounded-3   h-100 img-fluid' style={{objectFit: 'cover'}} src="/heroimage.webp" alt="Hero Image" />
      </div>
      
@@ -35,6 +42,7 @@ const HeroSection = () => {
               paddingLeft: '50px',
               fontSize: '16px'
             }}
+            ref={searchInputRef}
           />
           <i 
             className="fas fa-search position-absolute" 

@@ -41,7 +41,7 @@ const data=[
     "description": "Travel back in time to the palaces and forts of Rajasthan.",
     "image": "https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/20190425170948/friends-on-road-trip.jpg",
     "price": 24999,
-    "duration": 5,
+    "duration": 10,
     "rating": 4.5
   },
   {
@@ -50,7 +50,7 @@ const data=[
     "description": "Beautiful islands, spicy food, and amazing nightlife.",
     "image": "https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/20190425170948/friends-on-road-trip.jpg",
     "price": 27999,
-    "duration": 6,
+    "duration": 15,
     "rating": 4.6
   },
   {
@@ -68,7 +68,7 @@ const data=[
     "description": "A clean, modern city full of activities and food.",
     "image": "https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/20190425170948/friends-on-road-trip.jpg",
     "price": 54999,
-    "duration": 5,
+    "duration": 25,
     "rating": 4.4
   },
   {
@@ -77,7 +77,7 @@ const data=[
     "description": "Crystal-clear waters and coral reefs await you.",
     "image": "https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/20190425170948/friends-on-road-trip.jpg",
     "price": 31999,
-    "duration": 4,
+    "duration": 20,
     "rating": 4.7
   },
   {
@@ -86,7 +86,7 @@ const data=[
     "description": "Luxury shopping, desert adventures, and skyscrapers.",
     "image": "https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/20190425170948/friends-on-road-trip.jpg",
     "price": 47999,
-    "duration": 4,
+    "duration": 1,
     "rating": 4.6
   }
 ]

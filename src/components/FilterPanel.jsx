@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import data from '../data';
 
 import { FilterContext } from "../context/filterContext";
+import Slider from '@mui/material/Slider';
 const FilterPanel = () => {
   const { Filter , setFilter } = React.useContext(FilterContext); 
   const [priceRange, setPriceRange] = useState([0, 5000]);
@@ -20,11 +22,12 @@ const FilterPanel = () => {
   };
 
   const handleRatingChange = (e) => {
-    setMinRating(parseInt(e.target.value));
+    setFilter(prev => ({ ...prev, rating: parseInt(e.target.value) }));
   };
-
+  const maxPrice = Math.max(...data.map(item => item.price));
+  const minPrice = Math.min(...data.map(item => item.price));
   return (
-    <div className="   bg-primary w-25 p-6 rounded-lg shadow-sm border border-gray-200 max-w-sm" style={{
+    <div className="    w-25 p-6 rounded-lg shadow-sm border border-gray-200 max-w-sm" style={{
        height:"400px"
       }}>
         
@@ -35,8 +38,28 @@ const FilterPanel = () => {
       {/* Price Range */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-gray-700 mb-3">Price Range</label>
-        
-        
+        <div className="flex items-center gap-4">
+         
+          <Slider
+            value={Filter.price}
+            onChange={(e, newValue) => {
+              
+              setFilter(prev => ({ ...prev, price: newValue }));
+             
+            }}
+            valueLabelDisplay="auto"
+            min={minPrice}
+            max={maxPrice}
+            step={100}
+            sx={{ width: 180 }}
+          />
+          
+        </div>
+        <div className="d-flex gap-5">
+          <p className="text-sm text-gray-600">₹{Filter.price[0]}</p>
+          <p className="text-sm text-gray-600">₹{Filter.price[1]}</p>
+        </div>  
+       
       </div>
 
       {/* Trip Duration */}
@@ -59,13 +82,13 @@ const FilterPanel = () => {
       <div className="mb-6">
         <div className="flex justify-between items-center mb-3">
           <label className="block text-sm font-medium text-gray-700">Minimum Rating</label>
-          <span className="text-sm text-gray-600">{minRating}</span>
+          <span className="text-sm text-gray-600">{Filter.rating}</span>
         </div>
         <input
           type="range"
           min="1"
           max="5"
-          value={minRating}
+          value={Filter.rating}
           onChange={handleRatingChange}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
         />
@@ -73,16 +96,9 @@ const FilterPanel = () => {
 
       {/* Sort Options */}
       <div className="flex gap-2">
-        <button
-          onClick={() => setSortBy('price')}
-          className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
-            sortBy === 'price'
-              ? 'bg-gray-100 text-gray-800'
-              : 'bg-gray-200 text-gray-500 hover:bg-gray-300'
-          }`}
-        >
-          Sort by Price
-        </button>
+        <p>sort by price</p>
+      <button type="button" onClick={()=>{ setFilter(prev => ({ ...prev, sort:"lth"}));}} className="btn btn-primary">Low to High</button>
+      <button type="button"  onClick={()=>{ setFilter(prev => ({ ...prev, sort:"htl"})) ;}} className="btn btn-primary">High to Low</button>
         
       </div>
 
