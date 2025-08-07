@@ -5,18 +5,23 @@ import { SavedContext } from "../context/savedContext";
 const TripCard = ( props ) => {
   const { Saved , setSaved } = React.useContext(SavedContext); 
   const handelClick =()=>{
-   setSaved(prev => [
-     ...prev,
-     {
-       id: props.id,
-       title: props.title,
-       description: props.description,
-       image: props.image,
-       price: props.price,
-       duration: props.duration,
-       rating: props.rating
+   setSaved(prev => {
+     if (prev.some(item => item.id === props.id)) {
+       return prev; // Already exists, do not add duplicate
      }
-   ]);
+     return [
+       ...prev,
+       {
+         id: props.id,
+         title: props.title,
+         description: props.description,
+         image: props.image,
+         price: props.price,
+         duration: props.duration,
+         rating: props.rating
+       }
+     ];
+   });
   }
   return (
     <div className="trip-card ">

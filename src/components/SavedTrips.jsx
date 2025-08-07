@@ -11,7 +11,14 @@ console.log(id)
     <div className='' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       
       <h2 className="mb-4 fw-bold"  >Saved Trips</h2>
-      {Saved && Saved.length > 0 ? (
+      <div style={{
+           display: "flex",
+           flexWrap: "wrap",
+           gap: "24px",
+           padding: "24px",
+           justifyContent: "center",
+           alignItems: "flex-start"
+         }}>{Saved && Saved.length > 0 ? (
         Saved.map((item) => (
           <div
             className="trip-card"
@@ -25,6 +32,9 @@ console.log(id)
           >
             <div className="trip-card-content">
               <div className="trip-card-text">
+              <div className="trip-card-image">
+                <img src={item.image} alt={item.title} />
+              </div>
                 <div className="featured-label">Featured</div>
                 <h3 className="trip-title">{item.title}</h3>
                 <p className="trip-description">{item.description}</p>
@@ -58,15 +68,14 @@ console.log(id)
                   </svg>
                 </button>
               </div>
-              <div className="trip-card-image">
-                <img src={item.image} alt={item.title} />
-              </div>
+             
             </div>
           </div>
         ))
       ) : (
-        <div style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>No trips saved</div>
-      )}
+        <div style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>No trips saved   </div>
+      )}</div>
+      
     </div>
   );
 };
