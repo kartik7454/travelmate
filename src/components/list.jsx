@@ -25,20 +25,27 @@ const List = () => {
  } else if (Filter.sort === "htl") {
    filteredData.sort((a, b) => b.price - a.price);
  }
-  return (
+
+ return (
     <div>
       
-       <div>
-        {filteredData.map((item)=>(
-          
-          <TripCard id ={item.id} 
-          title={item.title}
-          description={item.description}
-          price={item.price }
-          duration ={item.duration}
-          rating={item.rating}
-          image={item.image}/>
-        ))}
+       <div className="" style={{  borderRadius: "12px", minHeight: "400px", width:"1000px" }}>
+        {filteredData.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>No trips found</div>
+        ) : (
+          filteredData.map((item) => (
+            <TripCard
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              description={item.description}
+              price={item.price}
+              duration={item.duration}
+              rating={item.rating}
+              image={item.image}
+            />
+          ))
+        )}
       </div>
     </div>
   );

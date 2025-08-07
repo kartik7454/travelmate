@@ -36,8 +36,10 @@ const HeroSection = () => {
             style={{
               width: '700px',
               height: '40px',
-              backgroundColor: '#f5f5dc',
-              border: 'none',
+              backgroundColor: 'white',
+              
+              border: 'solid',
+              borderWidth: '1px',
               borderRadius: '25px',
               paddingLeft: '50px',
               fontSize: '16px'

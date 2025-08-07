@@ -6,6 +6,7 @@ import {SavedProvider } from './context/savedContext'
 import List from "./components/list";
 import SavedTrips from './components/SavedTrips';
 import {FilterProvider } from './context/filterContext'
+import React, { useState } from 'react';
 function App() {
   return (
     <div>

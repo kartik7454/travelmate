@@ -8,11 +8,21 @@ console.log(id)
 
     }
   return (
-    <div>
-      <h2>Saved Trips</h2>
+    <div className='' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      
+      <h2 className="mb-4 fw-bold"  >Saved Trips</h2>
       {Saved && Saved.length > 0 ? (
         Saved.map((item) => (
-          <div className="trip-card" key={item.id || item.title}>
+          <div
+            className="trip-card"
+            key={item.id || item.title}
+            style={{
+              width: "1000px",
+              margin: "20px auto",
+              display: "flex",
+              justifyContent: "center"
+            }}
+          >
             <div className="trip-card-content">
               <div className="trip-card-text">
                 <div className="featured-label">Featured</div>
@@ -40,13 +50,13 @@ console.log(id)
                     </div>
                   </div>
                 </div>
-                <button className="save-trip-btn" onClick={()=>{handelClick(item.id)}} >
-            <span>delete</span>
-            <svg className="bookmark-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          </button>     
+                <button className="save-trip-btn" onClick={() => { handelClick(item.id) }} >
+                  <span>delete</span>
+                  <svg className="bookmark-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </button>
               </div>
               <div className="trip-card-image">
                 <img src={item.image} alt={item.title} />
@@ -55,7 +65,7 @@ console.log(id)
           </div>
         ))
       ) : (
-        <h1>No saved trips</h1>
+        <div style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>No trips saved</div>
       )}
     </div>
   );
