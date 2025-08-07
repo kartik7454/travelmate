@@ -20,8 +20,10 @@ const TripCard = ( props ) => {
   }
   return (
     <div className="trip-card ">
-     
       <div className="trip-card-content">
+        <div className="trip-card-image">
+          <img src={props.image} alt={props.title} />
+        </div>
         <div className="trip-card-text">
           <div className="featured-label">Featured</div>
           <h3 className="trip-title">{props.title}</h3>
@@ -39,7 +41,6 @@ const TripCard = ( props ) => {
                   </svg>
                 ))}
               </div>
-              
             </div>
           </div>
           <button className="save-trip-btn" onClick={()=>{handelClick()}}>
@@ -48,9 +49,6 @@ const TripCard = ( props ) => {
               <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
             </svg>
           </button>
-        </div>
-        <div className="trip-card-image">
-          <img src={props.image} alt={props.title} />
         </div>
       </div>
     </div>

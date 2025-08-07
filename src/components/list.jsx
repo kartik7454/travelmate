@@ -29,9 +29,19 @@ const List = () => {
  return (
     <div>
       
-       <div className="" style={{  borderRadius: "12px", minHeight: "400px", width:"1000px" }}>
+       <div
+         className="trip-card-grid"
+         style={{
+           display: "flex",
+           flexWrap: "wrap",
+           gap: "24px",
+           padding: "24px",
+           justifyContent: "center",
+           alignItems: "flex-start"
+         }}
+       >
         {filteredData.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '2rem', color: '#888' }}>No trips found</div>
+          <div style={{ textAlign: 'center', padding: '2rem', color: '#888', width: "100%" }}>No trips found</div>
         ) : (
           filteredData.map((item) => (
             <TripCard
