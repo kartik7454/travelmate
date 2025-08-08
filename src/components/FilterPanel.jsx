@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import data from '../data';
-
+import './FilterPanel.css';
 import { FilterContext } from "../context/filterContext";
 import Slider from '@mui/material/Slider';
 const FilterPanel = () => {
@@ -27,19 +27,13 @@ const FilterPanel = () => {
   const maxPrice = Math.max(...data.map(item => item.price));
   const minPrice = Math.min(...data.map(item => item.price));
   return (
-    <div
-      className="pt-3 ms-3 ps-4 pe-4 border rounded shadow-sm bg-white"
-      style={{
-        height: "450px",
-        width: "300px"
-      }}
-    >
-      <h2 className="h5 fw-bold text-dark mb-4">Filter Options</h2>
+    <div className="filter-panel">
+      <h2 className="filter-title">Filter Options</h2>
 
       {/* Price Range */}
-      <div className="mb-4">
-        <label className="form-label mb-2">Price Range</label>
-        <div className="d-flex align-items-center gap-3">
+      <div className="filter-section">
+        <label className="filter-label">Price Range</label>
+        <div className="slider-container">
           <Slider
             value={Filter.price}
             onChange={(e, newValue) => {
@@ -49,20 +43,20 @@ const FilterPanel = () => {
             min={minPrice}
             max={maxPrice}
             step={100}
-            sx={{ width: 250 }}
+            className="price-slider"
           />
         </div>
-        <div className="d-flex justify-content-between mt-2">
-          <span className="text-muted small">₹{Filter.price[0]}</span>
-          <span className="text-muted small">₹{Filter.price[1]}</span>
+        <div className="price-range-labels">
+          <span className="price-label">₹{Filter.price[0]}</span>
+          <span className="price-label">₹{Filter.price[1]}</span>
         </div>
       </div>
 
       {/* Trip Duration */}
-      <div className="mb-4">
-        <div className="d-flex justify-content-between align-items-center mb-2">
-          <label className="form-label mb-0">Trip Duration (Days)</label>
-          <span className="text-muted small">{Filter.duration}</span>
+      <div className="filter-section">
+        <div className="filter-header">
+          <label className="filter-label">Trip Duration (Days)</label>
+          <span className="filter-value">{Filter.duration}</span>
         </div>
         <input
           type="range"
@@ -70,16 +64,15 @@ const FilterPanel = () => {
           max="30"
           value={Filter.duration}
           onChange={handleDurationChange}
-          className="form-range"
-          style={{ width: '250px' }}
+          className="range-slider"
         />
       </div>
 
       {/* Minimum Rating */}
-      <div className="mb-4">
-        <div className="d-flex justify-content-between align-items-center mb-2">
-          <label className="form-label mb-0">Minimum Rating</label>
-          <span className="text-muted small">{Filter.rating}</span>
+      <div className="filter-section">
+        <div className="filter-header">
+          <label className="filter-label">Minimum Rating</label>
+          <span className="filter-value">{Filter.rating}</span>
         </div>
         <input
           type="range"
@@ -87,32 +80,33 @@ const FilterPanel = () => {
           max="5"
           value={Filter.rating}
           onChange={handleRatingChange}
-          className="form-range"
-          style={{ width: '250px' }}
+          className="range-slider"
         />
       </div>
 
       {/* Sort Options */}
-      <div className="d-flex align-items-center gap-2">
-        <span className="text-muted small">Sort by price</span>
-        <button
-          type="button"
-          onClick={() => {
-            setFilter(prev => ({ ...prev, sort: "lth" }));
-          }}
-          className="btn btn-sm btn-outline-primary"
-        >
-          Low to High
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setFilter(prev => ({ ...prev, sort: "htl" }));
-          }}
-          className="btn btn-sm btn-outline-primary ms-1"
-        >
-          High to Low
-        </button>
+      <div className="filter-section">
+        <span className="filter-label">Sort by price</span>
+        <div className="sort-buttons">
+          <button
+            type="button"
+            onClick={() => {
+              setFilter(prev => ({ ...prev, sort: "lth" }));
+            }}
+            className={`sort-btn ${Filter.sort === "lth" ? "active" : ""}`}
+          >
+            Low to High
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setFilter(prev => ({ ...prev, sort: "htl" }));
+            }}
+            className={`sort-btn ${Filter.sort === "htl" ? "active" : ""}`}
+          >
+            High to Low
+          </button>
+        </div>
       </div>
     </div>
   );

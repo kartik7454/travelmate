@@ -27,21 +27,10 @@ const List = () => {
  }
 
  return (
-    <div>
-      
-       <div
-         className="trip-card-grid"
-         style={{
-           display: "flex",
-           flexWrap: "wrap",
-           gap: "24px",
-           padding: "24px",
-           justifyContent: "center",
-           alignItems: "flex-start"
-         }}
-       >
+    <div className="list-container">
+       <div className="trip-card-grid">
         {filteredData.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '2rem', color: '#888', width: "100%" }}>No trips found</div>
+          <div className="no-results">No trips found</div>
         ) : (
           filteredData.map((item) => (
             <TripCard
